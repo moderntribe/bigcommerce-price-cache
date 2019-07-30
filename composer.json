@@ -1,0 +1,12 @@
+{
+    "name": "moderntribe/bigcommerce-price-cache",
+    "description": "Price Cache for BigCommerce for WordPress",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BigCommerce_Price_Cache\\": "src/BigCommerce_Price_Cache"
+        }
+    }
+}
