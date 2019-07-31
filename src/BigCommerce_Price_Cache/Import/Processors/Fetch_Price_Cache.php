@@ -22,6 +22,8 @@ class Fetch_Price_Cache implements Import_Processor {
 	const COMPLETE     = 'fetched_price_cache';
 	const STATE_OPTION = 'bigcommerce_price_cache_fetching_state';
 
+	const CACHE_PREFIX = 'bigcommerce_price_cache-';
+
 	/** @var PricingApi */
 	private $pricing;
 	/** @var \WP_Term */
@@ -108,7 +110,7 @@ class Fetch_Price_Cache implements Import_Processor {
 		}
 
 		$post_ids = array_flip( $product_ids );
-		$meta_key = 'bigcommerce_price_cache-' . $this->channel_term->term_id;
+		$meta_key = self::CACHE_PREFIX . $this->channel_term->term_id;
 		foreach ( $pricing_response->getData() as $price ) {
 			$post_id = array_key_exists( $price->getProductId(), $post_ids ) ? $post_ids[ $price->getProductId() ] : 0;
 			if ( empty( $post_id ) ) {
