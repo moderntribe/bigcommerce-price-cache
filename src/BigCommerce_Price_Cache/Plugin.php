@@ -37,6 +37,7 @@ class Plugin {
 	}
 
 	private function load_service_providers() {
+		$this->providers[ 'import' ] = new Container\Import_Provider();
 
 		/**
 		 * Filter the service providers the power the plugin
