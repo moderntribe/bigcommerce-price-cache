@@ -14,7 +14,7 @@ use BigCommerce\Api\v3\ObjectSerializer;
 use BigCommerce\Post_Types\Product\Product;
 use BigCommerce\Taxonomies\Channel\Channel;
 use BigCommerce_Price_Cache\Exceptions\Cache_Not_Found_Exception;
-use BigCommerce_Price_Cache\Import\Processors\Fetch_Price_Cache;
+use BigCommerce_Price_Cache\Pricing\Price_Cache;
 
 /**
  * Class Cached_Pricing_Api
@@ -90,7 +90,7 @@ class Cached_Pricing_Api extends PricingApi {
 	 */
 	private function get_cached_pricing( $item, \WP_Term $channel ) {
 		$product = Product::by_product_id( $item['product_id'], $channel );
-		$meta    = get_post_meta( $product->post_id(), Fetch_Price_Cache::CACHE_PREFIX . $channel->term_id, true );
+		$meta    = get_post_meta( $product->post_id(), Price_Cache::meta_key( $channel ), true );
 		if ( empty( $meta ) ) {
 			throw new Cache_Not_Found_Exception( __( 'No pricing cache found for product ID ' . $item['product_id'] ) );
 		}

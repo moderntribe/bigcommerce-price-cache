@@ -37,11 +37,12 @@ class Plugin {
 	}
 
 	private function load_service_providers() {
-		$this->providers['import'] = new Container\Import_Provider();
-		$this->providers['rest']   = new Container\Rest_Provider();
+		$this->providers['import']  = new Container\Import_Provider();
+		$this->providers['pricing'] = new Container\Pricing_Provider();
+		$this->providers['rest']    = new Container\Rest_Provider();
 
 		/**
-		 * Filter the service providers the power the plugin
+		 * Filter the service providers that power the plugin
 		 *
 		 * @param \BigCommerce\Container\Provider[] $providers
 		 */

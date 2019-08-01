@@ -14,6 +14,7 @@ use BigCommerce\Logging\Error_Log;
 use BigCommerce\Post_Types\Product\Product;
 use BigCommerce\Settings\Sections\Currency;
 use BigCommerce\Taxonomies\Channel\Channel;
+use BigCommerce_Price_Cache\Pricing\Price_Cache;
 
 class Fetch_Price_Cache implements Import_Processor {
 	use No_Cache_Options;
@@ -21,8 +22,6 @@ class Fetch_Price_Cache implements Import_Processor {
 	const RUNNING      = 'fetching_price_cache';
 	const COMPLETE     = 'fetched_price_cache';
 	const STATE_OPTION = 'bigcommerce_price_cache_fetching_state';
-
-	const CACHE_PREFIX = 'bigcommerce_price_cache-';
 
 	/** @var PricingApi */
 	private $pricing;
@@ -110,7 +109,7 @@ class Fetch_Price_Cache implements Import_Processor {
 		}
 
 		$post_ids = array_flip( $product_ids );
-		$meta_key = self::CACHE_PREFIX . $this->channel_term->term_id;
+		$meta_key = Price_Cache::meta_key( $this->channel_term );
 		foreach ( $pricing_response->getData() as $price ) {
 			$post_id = array_key_exists( $price->getProductId(), $post_ids ) ? $post_ids[ $price->getProductId() ] : 0;
 			if ( empty( $post_id ) ) {
