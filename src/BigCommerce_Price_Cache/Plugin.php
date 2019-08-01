@@ -4,7 +4,7 @@
 namespace BigCommerce_Price_Cache;
 
 class Plugin {
-	const VERSION     = '1.0.0-dev';
+	const VERSION     = '0.1.0-dev';
 	const PLUGIN_FILE = 'bigcommerce_price_cache_plugin_file';
 
 	protected static $_instance;

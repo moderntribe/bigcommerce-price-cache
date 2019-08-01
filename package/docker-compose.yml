@@ -1,0 +1,17 @@
+version: "3"
+services:
+  package:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bigcommerce-price-cache-package:5.6-rev0
+    working_dir: /data
+    volumes:
+      - ./.build/src:/data/src
+      - ./.build/bigcommerce-price-cache:/data/plugin
+      - ./.build/zip:/data/zip
+      - ./.build/cache:/data/cache
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - COMPOSER_CACHE_DIR=/data/cache/composer
+      - COMPOSER_NO_INTERACTION=1

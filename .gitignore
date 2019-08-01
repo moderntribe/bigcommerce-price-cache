@@ -52,3 +52,4 @@ local-config.json
 /assets/js/dist/
 /assets/js/vendor/
 build-timestamp.php
+package/.build/

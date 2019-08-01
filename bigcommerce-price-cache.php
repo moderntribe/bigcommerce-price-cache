@@ -3,7 +3,7 @@
 Plugin Name:  BigCommerce - Pricing API Cache
 Description:  Aggressively caches prices for BigCommerce products, making requests to the Pricing API during import.
 Author:       BigCommerce
-Version:      1.0.0-dev
+Version:      0.1.0-dev
 Author URI:   https://www.bigcommerce.com/wordpress
 Requires PHP: 5.6.24
 Text Domain:  bigcommerce
