@@ -36,7 +36,7 @@ class Cached_Pricing_Api extends PricingApi {
 	 * @throws \InvalidArgumentException
 	 */
 	public function getPrices( $body, array $params = [] ) {
-		if ( $body->getCustomerGroupId() ) {
+		if ( $body->getCustomerGroupId() !== null ) {
 			// only the default customer group gets cached prices
 			return parent::getPrices( $body, $params );
 		}
