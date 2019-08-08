@@ -18,5 +18,9 @@ class Pricing_Provider extends Provider {
 		add_filter( 'bigcommerce/product/price_range/data', $this->create_callback( 'price_range_filter', function ( $price, $product ) use ( $container ) {
 			return $container[ self::CACHE ]->filter_price_range( $price, $product );
 		} ), 10, 2 );
+
+		add_filter( 'bigcommerce/template/wrapper/classes', $this->create_callback( 'price_wrapper_class_filter', function ( $classes, $template ) use ( $container ) {
+			return $container[ self::CACHE ]->add_preinitialized_wrapper_class( $classes, $template );
+		} ), 10, 2 );
 	}
 }

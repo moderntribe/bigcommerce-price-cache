@@ -59,4 +59,22 @@ class Price_Cache {
 
 		return $data;
 	}
+
+	/**
+	 * Adds a class to the price wrapper so the plugin skips the initial
+	 * Ajax request
+	 *
+	 * @param string[] $classes
+	 * @param string   $template
+	 *
+	 * @return string[]
+	 * @filter bigcommerce/template/wrapper/classes
+	 */
+	public function add_preinitialized_wrapper_class( $classes, $template ) {
+		if ( $template === 'components/products/product-price.php' && ! is_user_logged_in() ) {
+			$classes[] = 'preinitialized';
+		}
+
+		return $classes;
+	}
 }
