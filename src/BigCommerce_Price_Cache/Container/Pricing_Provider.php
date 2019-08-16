@@ -4,6 +4,7 @@
 namespace BigCommerce_Price_Cache\Container;
 
 use BigCommerce\Container\Provider;
+use BigCommerce\Customizer\Sections\Product_Single;
 use BigCommerce_Price_Cache\Pricing\Price_Cache;
 use Pimple\Container;
 
@@ -22,5 +23,9 @@ class Pricing_Provider extends Provider {
 		add_filter( 'bigcommerce/template/wrapper/classes', $this->create_callback( 'price_wrapper_class_filter', function ( $classes, $template ) use ( $container ) {
 			return $container[ self::CACHE ]->add_preinitialized_wrapper_class( $classes, $template );
 		} ), 10, 2 );
+
+		add_filter( 'pre_option_' . Product_Single::PRICE_DISPLAY, $this->create_callback( 'price_display_option_filter', function( $value ) use ( $container ) {
+			return $container[ self::CACHE ]->filter_price_display_option( $value );
+		}), 10, 1 );
 	}
 }

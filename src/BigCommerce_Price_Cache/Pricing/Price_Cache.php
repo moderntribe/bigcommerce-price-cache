@@ -77,4 +77,15 @@ class Price_Cache {
 
 		return $classes;
 	}
+
+	/**
+	 *
+	 * @filter pre_option_bigcommerce_default_price_display
+	 */
+	public function filter_price_display_option( $value ) {
+		if ( ! is_user_logged_in() ) {
+			return 'yes';
+		}
+		return $value;
+	}
 }
